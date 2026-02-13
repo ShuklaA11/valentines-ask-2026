@@ -141,7 +141,18 @@ const playAudio = () => {
 // Play on load
 playAudio();
 
-// Play on first click if blocked
-document.body.addEventListener('click', () => {
+// Play on first interaction if blocked
+// We listen to multiple events to catch the earliest possible interaction
+const startMusic = () => {
     playAudio();
-}, { once: true });
+    // Remove listeners once played
+    document.body.removeEventListener('click', startMusic);
+    document.body.removeEventListener('touchstart', startMusic);
+    document.body.removeEventListener('keydown', startMusic);
+    document.body.removeEventListener('scroll', startMusic);
+};
+
+document.body.addEventListener('click', startMusic, { once: true });
+document.body.addEventListener('touchstart', startMusic, { once: true });
+document.body.addEventListener('keydown', startMusic, { once: true });
+document.body.addEventListener('scroll', startMusic, { once: true });

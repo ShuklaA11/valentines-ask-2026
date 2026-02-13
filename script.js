@@ -126,3 +126,22 @@ function createFloodImage(src) {
         img.remove();
     }, (duration + delay) * 1000);
 }
+
+// Background Music Logic
+const audio = document.getElementById('bg-music');
+audio.volume = 0.5; // Set volume to 50%
+
+// Attempt to autoplay
+const playAudio = () => {
+    audio.play().catch(error => {
+        console.log("Autoplay blocked, waiting for interaction.");
+    });
+};
+
+// Play on load
+playAudio();
+
+// Play on first click if blocked
+document.body.addEventListener('click', () => {
+    playAudio();
+}, { once: true });

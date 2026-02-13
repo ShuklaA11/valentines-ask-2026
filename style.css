@@ -254,3 +254,26 @@ body {
         display: none;
     }
 }
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    .question,
+    .success-message {
+        font-size: 2rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+    }
+
+    .collage {
+        display: none !important;
+        /* Force hide on mobile just in case */
+    }
+}

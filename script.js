@@ -37,6 +37,7 @@ noBtn.addEventListener('click', () => {
 yesBtn.addEventListener('click', () => {
     questionContainer.classList.add('hidden');
     successContainer.classList.remove('hidden');
+    playAudio(); // Start music only after Yes is clicked
 
     // Hide the loop image container if it's visible
     if (!noMsgContainer.classList.contains('hidden')) {
@@ -131,29 +132,8 @@ function createFloodImage(src) {
 const audio = document.getElementById('bg-music');
 audio.volume = 0.5; // Set volume to 50%
 
-// Attempt to autoplay
 const playAudio = () => {
     audio.play().catch(error => {
-        console.log("Autoplay blocked, waiting for interaction.");
+        console.log("Play failed:", error);
     });
 };
-
-// Play on load
-playAudio();
-
-// Play on first interaction if blocked
-// We listen to multiple events to catch the earliest possible interaction
-const startMusic = () => {
-    playAudio();
-    // Remove listeners once played
-    document.body.removeEventListener('click', startMusic);
-    document.body.removeEventListener('touchstart', startMusic);
-    document.body.removeEventListener('keydown', startMusic);
-    document.body.removeEventListener('scroll', startMusic);
-};
-
-
-document.body.addEventListener('click', startMusic, { once: true });
-document.body.addEventListener('touchstart', startMusic, { once: true });
-document.body.addEventListener('keydown', startMusic, { once: true });
-document.body.addEventListener('scroll', startMusic, { once: true });

@@ -249,26 +249,28 @@ body {
 }
 
 /* Hide collage on smaller screens to avoid clutter */
-@media (max-width: 1200px) {
+/* Hide collage on medium screens (tablets vertical) but show on mobile */
+@media (min-width: 769px) and (max-width: 1200px) {
     .collage {
         display: none;
     }
 }
 
-/* Mobile Adjustments */
+/* Base Mobile Adjustments (Phones & Small Tablets) */
 @media (max-width: 768px) {
     .container {
         padding: 15px;
         width: 85%;
         max-width: 350px;
-        /* Constrain width */
         z-index: 100;
-        /* Ensure on top of images */
+        margin-top: 60px;
+        /* Space for top collage */
+        margin-bottom: 60px;
+        /* Space for bottom collage */
     }
 
     .question {
         font-size: 1.5rem;
-        /* Smaller text */
         margin-bottom: 10px;
     }
 
@@ -282,7 +284,6 @@ body {
 
     .cute-gif {
         max-width: 80%;
-        /* Smaller GIF */
     }
 
     .btn {
@@ -290,29 +291,38 @@ body {
         font-size: 1rem;
     }
 
-    /* Re-enable and position collage for mobile */
+    /* Force visible collage on mobile */
     .collage {
         display: flex !important;
         flex-direction: row;
         width: 100%;
-        height: auto;
+        height: 100px;
+        /* Fixed height for strip */
         position: fixed;
         left: 0;
+        right: 0;
         transform: none;
+        /* remove translateY */
         justify-content: center;
+        align-items: center;
         gap: 10px;
-        padding: 10px;
+        padding: 5px;
         box-sizing: border-box;
-        z-index: 1;
+        z-index: 50;
+        /* Visible but behind container (z-100) */
+        background-color: transparent;
+        pointer-events: none;
+        /* Click through */
     }
 
+    /* Top Strip */
     .left-collage {
         top: 0;
         bottom: auto;
         left: 0;
-        /* Reset left */
     }
 
+    /* Bottom Strip */
     .right-collage {
         bottom: 0;
         top: auto;
@@ -321,13 +331,17 @@ body {
     }
 
     .collage-img {
-        max-width: 28%;
-        /* Fit 3 in a row */
-        max-height: 120px;
+        width: auto;
+        height: 90px;
+        /* Fixed height fitting within strip */
+        max-width: 30%;
+        object-fit: cover;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
+    /* Override specific left-collage styles */
     .left-collage .collage-img {
-        max-width: 28%;
-        max-height: 120px;
+        max-width: 30%;
+        max-height: 90px;
     }
 }

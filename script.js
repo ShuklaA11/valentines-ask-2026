@@ -150,7 +150,22 @@ const startMusic = () => {
     document.body.removeEventListener('touchstart', startMusic);
     document.body.removeEventListener('keydown', startMusic);
     document.body.removeEventListener('scroll', startMusic);
+
+    // Hide the button if it exists
+    const musicBtn = document.getElementById('music-btn');
+    if (musicBtn) {
+        musicBtn.style.display = 'none';
+    }
 };
+
+const musicBtn = document.getElementById('music-btn');
+if (musicBtn) {
+    musicBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent triggering other clicks
+        startMusic();
+    });
+}
+
 
 document.body.addEventListener('click', startMusic, { once: true });
 document.body.addEventListener('touchstart', startMusic, { once: true });

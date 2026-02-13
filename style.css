@@ -258,22 +258,76 @@ body {
 /* Mobile Adjustments */
 @media (max-width: 768px) {
     .container {
-        padding: 20px;
-        width: 90%;
+        padding: 15px;
+        width: 85%;
+        max-width: 350px;
+        /* Constrain width */
+        z-index: 100;
+        /* Ensure on top of images */
     }
 
-    .question,
+    .question {
+        font-size: 1.5rem;
+        /* Smaller text */
+        margin-bottom: 10px;
+    }
+
     .success-message {
-        font-size: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .gif-container {
+        margin-bottom: 15px;
+    }
+
+    .cute-gif {
+        max-width: 80%;
+        /* Smaller GIF */
     }
 
     .btn {
-        padding: 10px 20px;
-        font-size: 1.2rem;
+        padding: 8px 16px;
+        font-size: 1rem;
     }
 
+    /* Re-enable and position collage for mobile */
     .collage {
-        display: none !important;
-        /* Force hide on mobile just in case */
+        display: flex !important;
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        position: fixed;
+        left: 0;
+        transform: none;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+        z-index: 1;
+    }
+
+    .left-collage {
+        top: 0;
+        bottom: auto;
+        left: 0;
+        /* Reset left */
+    }
+
+    .right-collage {
+        bottom: 0;
+        top: auto;
+        right: 0;
+        /* Reset right */
+    }
+
+    .collage-img {
+        max-width: 28%;
+        /* Fit 3 in a row */
+        max-height: 120px;
+    }
+
+    .left-collage .collage-img {
+        max-width: 28%;
+        max-height: 120px;
     }
 }
